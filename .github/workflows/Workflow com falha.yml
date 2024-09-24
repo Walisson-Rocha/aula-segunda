@@ -32,7 +32,7 @@ jobs:
       - name: Passo 2
         run: echo "Passo 2"
       - name: Passo falha
-        run: echo "Passo falha" -exit 1
+        run: echo "Passo falha" | exit 1
 
   job3:
     name: Job3
