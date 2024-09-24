@@ -1,0 +1,49 @@
+name: Workflow com dependências de jobs e falha
+
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+            branches: [main]
+
+jobs:
+  job1:
+    name: Job1
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Passo1
+        run: echo "Passo 1"
+
+      - name: Passo 2
+        run: echo "Passo 2"
+      - name: Passo...
+        run: echo "Passo..."
+  job2:
+    name: Job2
+    needs: job1
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Passo1
+        run: echo "Passo 1"
+
+      - name: Passo 2
+        run: echo "Passo 2"
+      - name: Passo falha
+        run: echo "Passo falha" -exit 1
+
+  job3:
+    name: Job3
+    needs: job2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Passo1
+        run: echo "Passo 1"
+
+      - name: Passo 2
+        run: echo "Passo 2"
+      - name: Passo...
+        run: echo "Passo..."
